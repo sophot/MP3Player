@@ -1,0 +1,33 @@
+/* JavaFX CSS - Leave this comment until you have at least create one rule which uses -fx-Property */
+
+.linear-grad-to-bottom{
+	-fx-background-color: linear-gradient(to bottom, #616161, #3f3d3d)
+}
+
+.linear-grad-to-top-right{
+	-fx-background-color: linear-gradient(to top right, #616161, #706f6f)
+}
+
+.jfx-progress-bar > .bar {
+	-fx-background-color: #000000;
+}
+
+.jfx-slider-style{
+	-jfx-default-thumb: #000000;
+}
+
+.jfx-slider-style .slider-value{
+	-fx-fill: #f9f639;
+	-fx-stroke: #f9f639;
+}
+
+.jfx-slider > .thumb{
+	-fx-background-color: #000000;
+	-fx-pref-height: 10px;
+	-fx-pref-width: 10px;
+}
+
+
+.jfx-slider-style > .animated-thumb{
+	-fx-background-color: #616161;
+}
