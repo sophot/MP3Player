@@ -401,6 +401,7 @@ public class Controller {
 					mp3player.stop();
 					nextPrev--;
 					mp3player = playlist.get(Integer.parseInt(currSong.getID()) + nextPrev);
+					startTime = System.currentTimeMillis() / 1000;
 					resetInfo();
 					mp3player.play();
 					showPauseIcon();
@@ -413,6 +414,7 @@ public class Controller {
 					System.out.println("nextSong clicked");
 					mp3player.stop();
 					mp3player = playlist.get(Integer.parseInt(currSong.getID()) + nextPrev);
+					startTime = System.currentTimeMillis() / 1000;
 					resetInfo();
 					mp3player.play();
 					showPauseIcon();
