@@ -1,0 +1,341 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXProgressBar?>
+<?import com.jfoenix.controls.JFXSlider?>
+<?import com.jfoenix.controls.JFXTreeTableView?>
+<?import java.lang.String?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TreeTableColumn?>
+<?import javafx.scene.effect.Glow?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.shape.Line?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane fx:id="mainWindow" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="740.0" prefWidth="476.0" style="-fx-background-color: #616161; -fx-border-color: #222222;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.Controller">
+   <children>
+      <BorderPane layoutY="42.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="480.0" style="-fx-border-color: #222222; -fx-background-color: #616161;" AnchorPane.topAnchor="41.0">
+         <center>
+            <AnchorPane accessibleRole="LIST_ITEM" prefHeight="650.0" prefWidth="473.0" BorderPane.alignment="CENTER">
+               <children>
+                  <Pane layoutX="1.0" prefHeight="450.0" prefWidth="467.0" style="-fx-background-color: #616161;">
+                     <children>
+                        <JFXTreeTableView fx:id="songTable" layoutX="4.0" layoutY="8.0" prefHeight="427.0" prefWidth="460.0" style="-fx-background-color: #616161;">
+                           <columns>
+                              <TreeTableColumn fx:id="songNameColumn" maxWidth="200.0" prefWidth="175.0" style="-fx-background-color: #616166; -fx-border-color: #616161;" text="Name" />
+                              <TreeTableColumn fx:id="timeColumn" maxWidth="55.0" prefWidth="50.0" resizable="false" style="-fx-background-color: #616159; -fx-border-color: #222235;" text="Time" />
+                              <TreeTableColumn fx:id="artistColumn" maxWidth="150.0" prefWidth="110.0" resizable="false" style="-fx-background-color: #616166; -fx-border-color: #616161;" text="Artist" />
+                              <TreeTableColumn fx:id="albumColumn" maxWidth="119.0" prefWidth="119.0" resizable="false" style="-fx-background-color: #616159; -fx-border-color: #222235;" text="Album" />
+                           </columns>
+                        </JFXTreeTableView>
+                     </children>
+                  </Pane>
+                  <Pane layoutX="-1.0" layoutY="489.0" prefHeight="163.0" prefWidth="480.0" styleClass="linear-grad-to-bottom" stylesheets="@mainTheme.css">
+                     <children>
+                        <AnchorPane layoutX="-3.0" layoutY="84.0" prefHeight="59.0" prefWidth="480.0">
+                           <children>
+                              <ImageView fx:id="muteIcon" fitHeight="47.0" fitWidth="50.0" layoutX="27.0" layoutY="12.0" pickOnBounds="true" preserveRatio="true" visible="false">
+                                 <image>
+                                    <Image url="@../assets/icons/icons8-mute-filled-50.png" />
+                                 </image>
+                              </ImageView>
+                              <ImageView fx:id="volumeLowIcon" fitHeight="47.0" fitWidth="50.0" layoutX="27.0" layoutY="12.0" pickOnBounds="true" preserveRatio="false">
+                                 <image>
+                                    <Image url="@../assets/icons/icons8-low-volume-filled-50.png" />
+                                 </image>
+                              </ImageView>
+                              <ImageView fx:id="volumeMidIcon" fitHeight="47.0" fitWidth="50.0" layoutX="27.0" layoutY="11.0" pickOnBounds="true" preserveRatio="true" visible="true">
+                                 <image>
+                                    <Image url="@../assets/icons/icons8-voice-filled-50.png" />
+                                 </image>
+                              </ImageView>
+                              <ImageView fx:id="volumeHighIcon" fitHeight="47.0" fitWidth="50.0" layoutX="27.0" layoutY="12.0" pickOnBounds="true" preserveRatio="true" visible="false">
+                                 <image>
+                                    <Image url="@../assets/icons/icons8-audio-50.png" />
+                                 </image>
+                              </ImageView>
+                              <Label fx:id="volumeValue" layoutX="199.0" layoutY="25.0" text="50" textAlignment="CENTER">
+                                 <font>
+                                    <Font name="Berlin Sans FB" size="17.0" />
+                                 </font>
+                              </Label>
+                              <JFXSlider fx:id="volumeSlider" layoutX="74.0" layoutY="28.0" prefHeight="16.0" prefWidth="115.0" stylesheets="@mainTheme.css" value="50.0">
+                                 <styleClass>
+                                    <String fx:value="animated-thumb" />
+                                    <String fx:value="slider-value" />
+                                    <String fx:value="jfx-slider-style" />
+                                 </styleClass></JFXSlider>
+                              <Pane layoutX="319.0" layoutY="6.0" prefHeight="40.0" prefWidth="39.0">
+                                 <children>
+                                    <ImageView fx:id="repeatBtn" fitHeight="40.0" fitWidth="43.0" layoutX="-3.0" pickOnBounds="true" preserveRatio="true">
+                                       <image>
+                                          <Image url="@../assets/icons/icons8-repeat-one-filled-50.png" />
+                                       </image>
+                                       <cursor>
+                                          <Cursor fx:constant="HAND" />
+                                       </cursor>
+                                    </ImageView>
+                                 </children>
+                              </Pane>
+                              <Pane layoutX="376.0" layoutY="8.0" prefHeight="40.0" prefWidth="39.0">
+                                 <children>
+                                    <ImageView fx:id="shuffleBtn" fitHeight="40.0" fitWidth="43.0" layoutX="-3.0" pickOnBounds="true" preserveRatio="true">
+                                       <image>
+                                          <Image url="@../assets/icons/icons8-shuffle-filled-50.png" />
+                                       </image>
+                                       <cursor>
+                                          <Cursor fx:constant="HAND" />
+                                       </cursor>
+                                    </ImageView>
+                                 </children>
+                              </Pane>
+                           </children>
+                        </AnchorPane>
+                        <AnchorPane layoutX="5.0" layoutY="14.0" prefHeight="90.0" prefWidth="389.0">
+                           <children>
+                              <Label fx:id="currentDuration" layoutX="17.0" layoutY="21.0" text="00:00" AnchorPane.bottomAnchor="9.0" AnchorPane.leftAnchor="17.0" AnchorPane.topAnchor="21.0">
+                                 <font>
+                                    <Font name="Berlin Sans FB" size="17.0" />
+                                 </font>
+                              </Label>
+                              <ImageView fx:id="previousBtn" fitHeight="53.0" fitWidth="50.0" layoutX="145.0" layoutY="29.0" pickOnBounds="true" preserveRatio="true" AnchorPane.bottomAnchor="11.0" AnchorPane.leftAnchor="145.0" AnchorPane.topAnchor="29.0">
+                                 <image>
+                                    <Image url="@../assets/icons/icons8-skip-to-start-filled-50.png" />
+                                 </image>
+                                 <cursor>
+                                    <Cursor fx:constant="HAND" />
+                                 </cursor>
+                                 <effect>
+                                    <Glow />
+                                 </effect>
+                              </ImageView>
+                              <ImageView fx:id="pauseBtn" disable="true" fitHeight="58.0" fitWidth="62.0" layoutX="200.0" layoutY="24.0" pickOnBounds="true" preserveRatio="true" visible="false" AnchorPane.bottomAnchor="8.0" AnchorPane.leftAnchor="200.0" AnchorPane.rightAnchor="336.0" AnchorPane.topAnchor="24.0">
+                                 <cursor>
+                                    <Cursor fx:constant="HAND" />
+                                 </cursor>
+                                 <image>
+                                    <Image url="@../assets/icons/icons8-pause-button-filled-50.png" />
+                                 </image>
+                                 <effect>
+                                    <Glow />
+                                 </effect>
+                              </ImageView>
+                              <ImageView fx:id="playBtn" fitHeight="58.0" fitWidth="62.0" layoutX="200.0" layoutY="24.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../assets/icons/icons8-circled-play-filled-50.png" />
+                                 </image>
+                                 <cursor>
+                                    <Cursor fx:constant="HAND" />
+                                 </cursor>
+                                 <effect>
+                                    <Glow />
+                                 </effect>
+                              </ImageView>
+                              <ImageView fx:id="nextSongBtn" fitHeight="53.0" fitWidth="50.0" layoutX="263.0" layoutY="29.0" pickOnBounds="true" preserveRatio="true" AnchorPane.bottomAnchor="11.0" AnchorPane.rightAnchor="281.0" AnchorPane.topAnchor="29.0">
+                                 <image>
+                                    <Image url="@../assets/icons/icons8-end-filled-50.png" />
+                                 </image>
+                                 <cursor>
+                                    <Cursor fx:constant="HAND" />
+                                 </cursor>
+                                 <effect>
+                                    <Glow />
+                                 </effect>
+                              </ImageView>
+                              <Label fx:id="totalDuration" alignment="CENTER_RIGHT" contentDisplay="TOP" layoutX="379.0" layoutY="15.0" prefHeight="60.0" prefWidth="57.0" text="00:00" AnchorPane.bottomAnchor="15.0" AnchorPane.leftAnchor="379.0" AnchorPane.rightAnchor="158.0" AnchorPane.topAnchor="15.0">
+                                 <font>
+                                    <Font name="Berlin Sans FB" size="17.0" />
+                                 </font>
+                              </Label>
+                           </children>
+                        </AnchorPane>
+                     </children>
+                  </Pane>
+                  <Line endX="358.5" layoutX="122.0" layoutY="487.0" startX="-123.00001525878906" stroke="#222222" />
+                  <JFXProgressBar fx:id="songProgress" layoutX="-2.0" layoutY="486.0" prefHeight="3.0" prefWidth="480.0" progress="0.0" styleClass="jfx-progress-bar" stylesheets="@mainTheme.css" />
+               </children>
+            </AnchorPane>
+         </center>
+         <top>
+            <AnchorPane prefHeight="54.0" prefWidth="480.0" style="-fx-background-color: #616161; -fx-border-color: #222222;" styleClass="linear-grad-to-right" stylesheets="@mainTheme.css" AnchorPane.bottomAnchor="0.0" BorderPane.alignment="CENTER">
+               <children>
+                  <Pane layoutX="6.0" layoutY="8.0" prefHeight="50.0" prefWidth="50.0" styleClass="pane-background">
+                     <children>
+                        <ImageView fx:id="showMoreBtn" fitHeight="39.0" fitWidth="41.0" layoutX="2.0" layoutY="2.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../assets/icons/icons8-view-more-filled-50.png" />
+                           </image>
+                           <cursor>
+                              <Cursor fx:constant="HAND" />
+                           </cursor>
+                        </ImageView>
+                     </children>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                  </Pane>
+                  <Pane fx:id="moreFunctionPane" layoutX="61.0" prefHeight="57.0" prefWidth="419.0" visible="false">
+                     <children>
+                        <Pane layoutX="14.0" layoutY="4.0" prefHeight="50.0" prefWidth="51.0" styleClass="linear-grad-to-top-right">
+                           <children>
+                              <ImageView fx:id="openFileBtn" fitHeight="39.0" fitWidth="41.0" layoutX="2.0" layoutY="2.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../assets/icons/icons8-music-folder-filled-50.png" />
+                                 </image>
+                                 <cursor>
+                                    <Cursor fx:constant="HAND" />
+                                 </cursor>
+                              </ImageView>
+                           </children>
+                           <cursor>
+                              <Cursor fx:constant="HAND" />
+                           </cursor>
+                        </Pane>
+                        <Pane layoutX="72.0" layoutY="4.0" prefHeight="50.0" prefWidth="50.0" styleClass="linear-grad-to-top-right">
+                           <children>
+                              <ImageView fx:id="addSongBtn" fitHeight="39.0" fitWidth="45.0" layoutX="2.0" layoutY="2.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../assets/icons/icons8-xbox-cross-filled-50.png" />
+                                 </image>
+                                 <cursor>
+                                    <Cursor fx:constant="HAND" />
+                                 </cursor>
+                              </ImageView>
+                           </children>
+                           <cursor>
+                              <Cursor fx:constant="HAND" />
+                           </cursor>
+                        </Pane>
+                        <Pane layoutX="129.0" layoutY="4.0" prefHeight="50.0" prefWidth="50.0" styleClass="linear-grad-to-top-right">
+                           <cursor>
+                              <Cursor fx:constant="HAND" />
+                           </cursor>
+                           <children>
+                              <ImageView fx:id="removeSongBtn" fitHeight="39.0" fitWidth="44.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../assets/icons/icons8-close-window-50.png" />
+                                 </image>
+                                 <cursor>
+                                    <Cursor fx:constant="HAND" />
+                                 </cursor>
+                              </ImageView>
+                           </children>
+                        </Pane>
+                        <Pane layoutX="185.0" layoutY="4.0" prefHeight="50.0" prefWidth="50.0" styleClass="linear-grad-to-top-right">
+                           <cursor>
+                              <Cursor fx:constant="HAND" />
+                           </cursor>
+                           <children>
+                              <ImageView fx:id="openPlaylistBtn" fitHeight="39.0" fitWidth="47.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../assets/icons/icons8-music-library-filled-50-2.png" />
+                                 </image>
+                                 <cursor>
+                                    <Cursor fx:constant="HAND" />
+                                 </cursor>
+                              </ImageView>
+                           </children>
+                        </Pane>
+                        <Pane layoutX="241.0" layoutY="4.0" prefHeight="50.0" prefWidth="50.0" styleClass="linear-grad-to-top-right">
+                           <cursor>
+                              <Cursor fx:constant="HAND" />
+                           </cursor>
+                           <children>
+                              <ImageView fx:id="newPlaylistBtn" fitHeight="46.0" fitWidth="49.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../assets/icons/icons8-favorite-folder-50.png" />
+                                 </image>
+                                 <cursor>
+                                    <Cursor fx:constant="HAND" />
+                                 </cursor>
+                              </ImageView>
+                           </children>
+                        </Pane>
+                        <Pane layoutX="299.0" layoutY="4.0" prefHeight="50.0" prefWidth="50.0" styleClass="linear-grad-to-top-right">
+                           <cursor>
+                              <Cursor fx:constant="HAND" />
+                           </cursor>
+                           <children>
+                              <ImageView fx:id="savePlaylistBtn" fitHeight="39.0" fitWidth="42.0" layoutX="6.0" layoutY="6.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../assets/icons/icons8-save-filled-50.png" />
+                                 </image>
+                                 <cursor>
+                                    <Cursor fx:constant="HAND" />
+                                 </cursor>
+                              </ImageView>
+                           </children>
+                        </Pane>
+                        <Pane layoutX="355.0" layoutY="4.0" prefHeight="50.0" prefWidth="50.0" styleClass="linear-grad-to-top-right">
+                           <children>
+                              <ImageView fx:id="deletePlaylistBtn" fitHeight="39.0" fitWidth="40.0" layoutX="-1.0" layoutY="2.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../assets/icons/icons8-trash-50.png" />
+                                 </image>
+                                 <cursor>
+                                    <Cursor fx:constant="HAND" />
+                                 </cursor>
+                              </ImageView>
+                           </children>
+                           <cursor>
+                              <Cursor fx:constant="HAND" />
+                           </cursor>
+                        </Pane>
+                     </children>
+                  </Pane>
+                  <Line endX="2.1663246154785156" endY="23.999778747558594" layoutX="53.0" layoutY="33.0" startX="2.16632080078125" startY="-28.0" />
+               </children>
+               <BorderPane.margin>
+                  <Insets />
+               </BorderPane.margin>
+            </AnchorPane>
+         </top>
+      </BorderPane>
+      <AnchorPane layoutY="-1.0" prefHeight="49.0" prefWidth="480.0" style="-fx-background-color: #222222;" AnchorPane.bottomAnchor="693.0" AnchorPane.topAnchor="-2.0">
+         <children>
+            <Label layoutX="55.0" layoutY="10.0" prefHeight="26.0" prefWidth="250.0" text="MP3 Player v2.0" textFill="#cccccc" AnchorPane.leftAnchor="55.0">
+               <font>
+                  <Font name="HiraMaruPro-W4" size="18.0" />
+               </font>
+            </Label>
+            <ImageView fitHeight="32.0" fitWidth="32.0" layoutX="7.0" layoutY="5.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../assets/icons/icons8-3ds-max-filled-50.png" />
+               </image>
+            </ImageView>
+            <Pane fx:id="minimizeBtn" layoutX="391.0" layoutY="7.0" prefHeight="28.0" prefWidth="34.0" styleClass="pane-background" AnchorPane.rightAnchor="55.0">
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+               <children>
+                  <ImageView fitHeight="25.0" fitWidth="25.0" layoutX="7.0" layoutY="1.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../assets/icons/icons8-minus-50.png" />
+                     </image>
+                  </ImageView>
+               </children>
+            </Pane>
+            <Pane fx:id="closeBtn" layoutX="429.0" layoutY="1.0" minHeight="-Infinity" minWidth="-Infinity" nodeOrientation="LEFT_TO_RIGHT" prefHeight="33.0" prefWidth="33.0" styleClass="pane-background">
+               <children>
+                  <ImageView fitHeight="28.0" fitWidth="28.0" layoutX="5.0" layoutY="5.0" pickOnBounds="true" preserveRatio="true">
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                     <image>
+                        <Image url="@../assets/icons/icons8-cancel-50.png" />
+                     </image>
+                  </ImageView>
+               </children>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </Pane>
+         </children>
+      </AnchorPane>
+   </children>
+</AnchorPane>
