@@ -191,6 +191,11 @@
                                     <Cursor fx:constant="HAND" />
                                  </cursor>
                               </ImageView>
+                              <Label layoutX="-5.0" layoutY="33.0" prefHeight="17.0" prefWidth="61.0" text="Open File">
+                                 <font>
+                                    <Font size="11.0" />
+                                 </font>
+                              </Label>
                            </children>
                            <cursor>
                               <Cursor fx:constant="HAND" />
@@ -206,6 +211,11 @@
                                     <Cursor fx:constant="HAND" />
                                  </cursor>
                               </ImageView>
+                              <Label layoutX="-5.0" layoutY="32.0" prefHeight="17.0" prefWidth="61.0" text="Add Song">
+                                 <font>
+                                    <Font name="Chalkboard SE Light" size="11.0" />
+                                 </font>
+                              </Label>
                            </children>
                            <cursor>
                               <Cursor fx:constant="HAND" />
@@ -224,6 +234,11 @@
                                     <Cursor fx:constant="HAND" />
                                  </cursor>
                               </ImageView>
+                              <Label layoutX="-9.0" layoutY="33.0" prefHeight="18.0" prefWidth="64.0" text="Remove Song">
+                                 <font>
+                                    <Font name="Chalkboard SE Light" size="11.0" />
+                                 </font>
+                              </Label>
                            </children>
                         </Pane>
                         <Pane layoutX="185.0" layoutY="4.0" prefHeight="50.0" prefWidth="50.0" styleClass="linear-grad-to-top-right">
@@ -239,6 +254,11 @@
                                     <Cursor fx:constant="HAND" />
                                  </cursor>
                               </ImageView>
+                              <Label layoutX="-5.0" layoutY="33.0" prefHeight="15.0" prefWidth="61.0" text="Open Playlist">
+                                 <font>
+                                    <Font name="Chalkboard SE Light" size="11.0" />
+                                 </font>
+                              </Label>
                            </children>
                         </Pane>
                         <Pane layoutX="241.0" layoutY="4.0" prefHeight="50.0" prefWidth="50.0" styleClass="linear-grad-to-top-right">
@@ -254,6 +274,11 @@
                                     <Cursor fx:constant="HAND" />
                                  </cursor>
                               </ImageView>
+                              <Label layoutX="-5.0" layoutY="30.0" prefHeight="25.0" prefWidth="61.0" text="New Playlist">
+                                 <font>
+                                    <Font name="Chalkboard SE Light" size="11.0" />
+                                 </font>
+                              </Label>
                            </children>
                         </Pane>
                         <Pane layoutX="299.0" layoutY="4.0" prefHeight="50.0" prefWidth="50.0" styleClass="linear-grad-to-top-right">
@@ -269,6 +294,11 @@
                                     <Cursor fx:constant="HAND" />
                                  </cursor>
                               </ImageView>
+                              <Label layoutX="-5.0" layoutY="34.0" prefHeight="11.0" prefWidth="61.0" text="Save Playlist">
+                                 <font>
+                                    <Font name="Chalkboard SE Light" size="11.0" />
+                                 </font>
+                              </Label>
                            </children>
                         </Pane>
                         <Pane layoutX="355.0" layoutY="4.0" prefHeight="50.0" prefWidth="50.0" styleClass="linear-grad-to-top-right">
@@ -281,6 +311,11 @@
                                     <Cursor fx:constant="HAND" />
                                  </cursor>
                               </ImageView>
+                              <Label layoutX="-5.0" layoutY="35.0" prefHeight="18.0" prefWidth="60.0" text="Remove Playlist">
+                                 <font>
+                                    <Font name="Chalkboard SE Light" size="11.0" />
+                                 </font>
+                              </Label>
                            </children>
                            <cursor>
                               <Cursor fx:constant="HAND" />
