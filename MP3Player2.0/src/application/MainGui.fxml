@@ -23,7 +23,7 @@
          <center>
             <AnchorPane accessibleRole="LIST_ITEM" prefHeight="650.0" prefWidth="473.0" BorderPane.alignment="CENTER">
                <children>
-                  <Pane layoutX="1.0" prefHeight="450.0" prefWidth="467.0" style="-fx-background-color: #616161;">
+                  <Pane layoutX="1.0" prefHeight="417.0" prefWidth="467.0" style="-fx-background-color: #616161;">
                      <children>
                         <JFXTreeTableView fx:id="songTable" layoutX="4.0" layoutY="8.0" prefHeight="427.0" prefWidth="460.0" style="-fx-background-color: #616161;">
                            <columns>
@@ -35,9 +35,9 @@
                         </JFXTreeTableView>
                      </children>
                   </Pane>
-                  <Pane layoutX="-1.0" layoutY="489.0" prefHeight="163.0" prefWidth="480.0" styleClass="linear-grad-to-bottom" stylesheets="@mainTheme.css">
+                  <Pane layoutY="449.0" prefHeight="203.0" prefWidth="480.0" styleClass="linear-grad-to-bottom" stylesheets="@mainTheme.css">
                      <children>
-                        <AnchorPane layoutX="-3.0" layoutY="84.0" prefHeight="59.0" prefWidth="480.0">
+                        <AnchorPane layoutX="-3.0" layoutY="133.0" prefHeight="71.0" prefWidth="480.0">
                            <children>
                               <ImageView fx:id="muteIcon" fitHeight="47.0" fitWidth="50.0" layoutX="27.0" layoutY="12.0" pickOnBounds="true" preserveRatio="true" visible="false">
                                  <image>
@@ -70,7 +70,7 @@
                                     <String fx:value="slider-value" />
                                     <String fx:value="jfx-slider-style" />
                                  </styleClass></JFXSlider>
-                              <Pane layoutX="319.0" layoutY="6.0" prefHeight="40.0" prefWidth="39.0">
+                              <Pane layoutX="358.0" layoutY="24.0" prefHeight="40.0" prefWidth="39.0">
                                  <children>
                                     <ImageView fx:id="repeatBtn" fitHeight="40.0" fitWidth="43.0" layoutX="-3.0" pickOnBounds="true" preserveRatio="true">
                                        <image>
@@ -82,7 +82,7 @@
                                     </ImageView>
                                  </children>
                               </Pane>
-                              <Pane layoutX="376.0" layoutY="8.0" prefHeight="40.0" prefWidth="39.0">
+                              <Pane layoutX="412.0" layoutY="24.0" prefHeight="40.0" prefWidth="39.0">
                                  <children>
                                     <ImageView fx:id="shuffleBtn" fitHeight="40.0" fitWidth="43.0" layoutX="-3.0" pickOnBounds="true" preserveRatio="true">
                                        <image>
@@ -96,7 +96,7 @@
                               </Pane>
                            </children>
                         </AnchorPane>
-                        <AnchorPane layoutX="5.0" layoutY="14.0" prefHeight="90.0" prefWidth="389.0">
+                        <AnchorPane layoutX="5.0" layoutY="59.0" prefHeight="103.0" prefWidth="594.0">
                            <children>
                               <Label fx:id="currentDuration" layoutX="17.0" layoutY="21.0" text="00:00" AnchorPane.bottomAnchor="9.0" AnchorPane.leftAnchor="17.0" AnchorPane.topAnchor="21.0">
                                  <font>
@@ -154,10 +154,19 @@
                               </Label>
                            </children>
                         </AnchorPane>
+                        <Label fx:id="songNameLabel" alignment="CENTER" layoutX="18.0" layoutY="1.0" prefHeight="53.0" prefWidth="426.0" textAlignment="CENTER">
+                           <font>
+                              <Font name="Silom" size="20.0" />
+                           </font>
+                        </Label>
+                        <Label fx:id="artistLabel" alignment="CENTER" layoutX="67.0" layoutY="46.0" prefHeight="39.0" prefWidth="328.0" textAlignment="CENTER">
+                           <font>
+                              <Font name="Silom" size="14.0" />
+                           </font>
+                        </Label>
                      </children>
                   </Pane>
-                  <Line endX="358.5" layoutX="122.0" layoutY="487.0" startX="-123.00001525878906" stroke="#222222" />
-                  <JFXProgressBar fx:id="songProgress" layoutX="-2.0" layoutY="486.0" prefHeight="3.0" prefWidth="480.0" progress="0.0" styleClass="jfx-progress-bar" stylesheets="@mainTheme.css" />
+                  <JFXProgressBar fx:id="songProgress" layoutY="448.0" prefHeight="3.0" prefWidth="480.0" progress="0.0" styleClass="jfx-progress-bar" stylesheets="@mainTheme.css" />
                </children>
             </AnchorPane>
          </center>

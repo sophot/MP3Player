@@ -7,7 +7,6 @@ import javafx.beans.property.StringProperty;
 
 public class Song extends RecursiveTreeObject<Song>{
 
-	private StringProperty id;
 	private StringProperty artistName;
 	private StringProperty songName;
 	private StringProperty time;
@@ -21,26 +20,12 @@ public class Song extends RecursiveTreeObject<Song>{
 		this.url = new SimpleStringProperty(url);
 	}
 	
-	public Song(String id, String songName, String time, String artistName, String album, String url) {
-		this.id = new SimpleStringProperty(id);
+	public Song(String songName, String time, String artistName, String album, String url) {
 		this.songName = new SimpleStringProperty(songName);
 		this.time = new SimpleStringProperty(time);
 		this.artistName = new SimpleStringProperty(artistName);
 		this.album = new SimpleStringProperty(album);
 		this.url = new SimpleStringProperty(url);
-	}
-
-	
-	public String getID() {
-		return id.get();
-	}
-
-	public void setID(String id) {
-		this.id.set(id);
-	}
-
-	public StringProperty idProperty() {
-		return id;
 	}
 
 	

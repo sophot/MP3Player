@@ -10,6 +10,7 @@ import javafx.beans.Observable;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
+import javafx.collections.ListChangeListener;
 import javafx.collections.ObservableList;
 import javafx.event.EventHandler;
 
@@ -21,6 +22,7 @@ import javax.sound.sampled.AudioSystem;
 import javax.sound.sampled.FloatControl;
 import javax.sound.sampled.Line;
 import javax.sound.sampled.Mixer;
+import javax.swing.filechooser.FileNameExtensionFilter;
 
 import com.jfoenix.controls.JFXProgressBar;
 import com.jfoenix.controls.JFXSlider;
@@ -44,6 +46,8 @@ import javafx.scene.media.MediaPlayer;
 import javafx.scene.media.MediaView;
 import javafx.scene.media.MediaPlayer.Status;
 import javafx.stage.DirectoryChooser;
+import javafx.stage.FileChooser;
+import javafx.stage.FileChooser.ExtensionFilter;
 import javafx.stage.Stage;
 import javafx.util.Callback;
 import javafx.util.Duration;
@@ -76,6 +80,10 @@ public class Controller {
 	private Label currentDuration;
 	@FXML
 	private Label totalDuration;
+	@FXML
+	private Label songNameLabel;
+	@FXML
+	private Label artistLabel;
 	@FXML
 	private JFXSlider volumeSlider;
 	@FXML
@@ -115,9 +123,9 @@ public class Controller {
 	@FXML
 	private Pane moreFunctionPane;
 
-	private List<MP3Player> playlist;
 	private MP3Player mp3player;
 	private Stage stage;
+	private ObservableList<Song> songs;
 
 	private boolean showingMore;
 	private long startTime;
@@ -128,12 +136,10 @@ public class Controller {
 	private double yOffset = 0;
 	private int nextPrev=0;
 	private Song currSong;
-//	private FadeTransition show;
-//	private FadeTransition hide;
+	
 
 	// CONSTRUCTOR
 	public Controller() {
-		playlist = new ArrayList<>();
 		showingMore = false;
 		stage = Main.getStage();
 	}
@@ -220,6 +226,25 @@ public class Controller {
 			@Override
 			public void handle(MouseEvent event) {
 				System.out.println("openFIle clicked");
+				FileChooser fc = new FileChooser();
+				File selectedFile = fc.showOpenDialog(null);
+
+				if (selectedFile != null) {
+					String fileName = selectedFile.getName();
+					if(fileName.endsWith("mp3")) {
+						try {
+							Mp3File mp3 = new Mp3File(selectedFile.getPath());
+							ID3v2 tag = mp3.getId3v2Tag();
+							currSong = new Song(tag.getTitle(), secToMin(mp3.getLengthInSeconds()),
+										tag.getArtist(), tag.getAlbum(), selectedFile.getAbsolutePath());
+							updateVolume();
+							resetInfo();
+							playSelectedSong();
+						}catch(Exception e) {}
+					}else {
+						System.out.println("Not MP3 File");
+					}
+				}
 			}
 		}); // END OF "openFileBtn" CLICKED
 
@@ -227,15 +252,28 @@ public class Controller {
 			@Override
 			public void handle(MouseEvent event) {
 				System.out.println("addSong clicked");
+				FileChooser fc = new FileChooser();
+				fc.getExtensionFilters().add(new FileChooser.ExtensionFilter("MP3 file (*.mp3)", "*.mp3"));
+				File selectedFile = fc.showOpenDialog(null);
+				
+				if (selectedFile != null) {
+					String fileName = selectedFile.getName();
+					if(fileName.endsWith("mp3")) {
+						try {
+							Mp3File mp3 = new Mp3File(selectedFile.getPath());
+							ID3v2 tag = mp3.getId3v2Tag();
+							currSong = new Song(tag.getTitle(), secToMin(mp3.getLengthInSeconds()),
+										tag.getArtist(), tag.getAlbum(), selectedFile.getAbsolutePath());
+							updateVolume();
+							playSelectedSong();
+						}catch(Exception e) {}
+					}else {
+						System.out.println("Not MP3 File");
+					}
+				}
+				
 			}
 		}); // END OF "addSongBtn" CLICKED
-
-		removeSongBtn.setOnMouseClicked(new EventHandler<MouseEvent>() {
-			@Override
-			public void handle(MouseEvent event) {
-				System.out.println("removeSong clicked");
-			}
-		}); // END OF "removeSongBtn" CLICKED
 
 		newPlaylistBtn.setOnMouseClicked(new EventHandler<MouseEvent>() {
 			@Override
@@ -267,13 +305,13 @@ public class Controller {
 				File selectedDirectory = dirChooser.showDialog(stage);
 				if (selectedDirectory == null) {
 					System.out.println("No directory selected!");
-				} else {
-					if (!playlist.isEmpty()) {
-						playlist.clear();
-						System.out.println("new array list");
-					}
-					final TreeItem<Song> root = new RecursiveTreeItem<Song>((songsUrls(selectedDirectory)),
-							RecursiveTreeObject::getChildren);
+				}else{
+//					if (!playlist.isEmpty()) {
+//						playlist.clear();
+//						System.out.println("new array list");
+//					}
+					songs = songsUrls(selectedDirectory);
+					final TreeItem<Song> root = new RecursiveTreeItem<Song>(songs, RecursiveTreeObject::getChildren);
 					songTable.getColumns().setAll(songNameColumn, timeColumn, artistColumn, albumColumn);
 					songTable.setRoot(root);
 					songTable.setShowRoot(false);
@@ -283,7 +321,7 @@ public class Controller {
 					songTable.setOnMouseClicked((MouseEvent e) -> {
 						// after select in table mediaplayer status is Ready (not UNKNOWN)
 						if ((e.getClickCount() > 0) && (e.getClickCount() < 2)) {
-							playSelectedSong();
+							songSelected();
 						}
 					});
 				}
@@ -306,7 +344,6 @@ public class Controller {
 		ObservableList<Song> songs = FXCollections.observableArrayList();
 		File[] files = dir.listFiles();
 		String fileName;
-		int i = 0;
 		for (File file : files) {
 
 			if (file.isFile()) {
@@ -314,12 +351,10 @@ public class Controller {
 
 				if (fileName.endsWith("mp3")) {
 					try {
-						i++;
 						Mp3File mp3 = new Mp3File(file.getPath());
 						ID3v2 tag = mp3.getId3v2Tag();
-						Song song = new Song(String.valueOf(i), tag.getTitle(), secToMin(mp3.getLengthInSeconds()),
+						Song song = new Song(tag.getTitle(), secToMin(mp3.getLengthInSeconds()),
 								tag.getArtist(), tag.getAlbum(), file.getAbsolutePath());
-						playlist.add(createPlayer(file.getAbsolutePath()));
 						songs.add(song);
 					} catch (Exception e) {
 						e.printStackTrace();
@@ -327,32 +362,56 @@ public class Controller {
 				}
 			}
 		}
-		i = 0;
-		System.out.println("read " + playlist.size() + " songs");
+		System.out.println("read " + songs.size() + " songs");
 		return songs;
 	}
 
 	public MP3Player createPlayer(String url) {
 		url.replace("\\", "/");
 		MP3Player player = new MP3Player(new File(url));
+		player.setName(url);
 
 		return player;
 	}
 
-	public void playSelectedSong() {
+	public void songSelected() {
 		if (songTable.getSelectionModel().getSelectedItem() != null) {
 			currSong = songTable.getSelectionModel().getSelectedItem().getValue();
 
 			resetInfo();
 			nextPrev = 0;
 
-			playPauseSong();
-		} else {
+			playSelectedSong();
+			
+			removeSongBtn.setOnMouseClicked(new EventHandler<MouseEvent>() {
+				@Override
+				public void handle(MouseEvent event) {
+					ArrayList<Song> songsToDel = new ArrayList<Song>();
+
+					//count selected songs and save them in arraylist to delete
+					for(int i = 0 ; i< songTable.getSelectionModel().getSelectedItems().toArray().length; i++) {				
+						songsToDel.add(songTable.getSelectionModel().getSelectedItems().get(i).getValue());	
+					}
+					
+					songs.removeAll(songsToDel);	//remove all songs in arraylist
+					
+					//update the Table View
+					final TreeItem<Song> root = new RecursiveTreeItem<Song>(songs, RecursiveTreeObject::getChildren);
+					songTable.getColumns().setAll(songNameColumn, timeColumn, artistColumn, albumColumn);
+					songTable.setRoot(root);
+					songTable.setShowRoot(false);
+					
+					for(int i = 0; i < songs.size(); i++) {
+						System.out.println(songs.get(i).getUrl());
+					}
+				}
+			}); // END OF "removeSongBtn" CLICKED
+		}else{
 			System.out.println("Found Nth");
 		}
 	} /// ^^END OF playSelectedSong^^//
 
-	public void playPauseSong() {
+	public void playSelectedSong() {
 		if (currSong != null) {
 			System.out.println(currSong.getUrl());
 //			File file = new File(song.getUrl());
@@ -371,7 +430,9 @@ public class Controller {
 			volumeValue.setText(String.valueOf((int) volumeSlider.getValue()));
 			volumeSlider.setValue(volume * 100);
 			updateSongProgress(0);
+			showSongLabel();
 			updateValues();
+
 
 			//// ^^ PLAY + PAUSE + NEXT + BACK ^^////
 			playBtn.setOnMouseClicked(new EventHandler<MouseEvent>() {
@@ -400,7 +461,14 @@ public class Controller {
 					System.out.println("previousBtn clicked");
 					mp3player.stop();
 					nextPrev--;
-					mp3player = playlist.get(Integer.parseInt(currSong.getID()) + nextPrev);
+					int index = songTable.getSelectionModel().getSelectedIndex() + nextPrev;
+					if(index < 0) {
+						index = songs.size()-1;
+						nextPrev += songs.size();
+					}
+					currSong = songs.get(index);
+					showSongLabel();
+					mp3player = new MP3Player(new File(currSong.getUrl()));
 					startTime = System.currentTimeMillis() / 1000;
 					resetInfo();
 					mp3player.play();
@@ -413,12 +481,19 @@ public class Controller {
 				public void handle(MouseEvent event) {
 					System.out.println("nextSong clicked");
 					mp3player.stop();
-					mp3player = playlist.get(Integer.parseInt(currSong.getID()) + nextPrev);
+					nextPrev++;
+					int index = songTable.getSelectionModel().getSelectedIndex() + nextPrev;
+					if(index > songs.size()-1) {
+						index = 0;
+						nextPrev -= songs.size();
+					}
+					currSong = songs.get(index);
+					showSongLabel();
+					mp3player = new MP3Player(new File(currSong.getUrl()));
 					startTime = System.currentTimeMillis() / 1000;
 					resetInfo();
 					mp3player.play();
 					showPauseIcon();
-					nextPrev++;
 				}
 			});
 			
@@ -476,7 +551,7 @@ public class Controller {
 					} catch (InterruptedException ex) {
 						break;
 					}
-				} while (!playlist.isEmpty());
+				} while (mp3player != null);
 			}
 		});
 		thread.start();
@@ -491,6 +566,11 @@ public class Controller {
 			currentDuration.setText("0:00");
 			playedTime = 0;
 		}catch(Exception e) {}
+	}
+	
+	public void showSongLabel() {
+		songNameLabel.setText(currSong.getSongName());
+		artistLabel.setText(currSong.getArtistName());
 	}
 
 	///// HELPER FUNCTION /////
