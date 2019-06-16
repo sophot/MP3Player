@@ -176,11 +176,11 @@
                         <Cursor fx:constant="HAND" />
                      </cursor>
                   </Pane>
-                  <Pane fx:id="moreFunctionPane" layoutX="61.0" prefHeight="57.0" prefWidth="419.0" visible="false">
+                  <Pane fx:id="moreFunctionPane" layoutX="61.0" prefHeight="57.0" prefWidth="419.0">
                      <children>
-                        <Pane layoutX="14.0" layoutY="4.0" prefHeight="50.0" prefWidth="51.0" styleClass="linear-grad-to-top-right">
+                        <Pane layoutX="6.0" layoutY="4.0" prefHeight="50.0" prefWidth="51.0" styleClass="linear-grad-to-top-right">
                            <children>
-                              <ImageView fx:id="openFileBtn" fitHeight="39.0" fitWidth="41.0" layoutX="2.0" layoutY="2.0" pickOnBounds="true" preserveRatio="true">
+                              <ImageView fx:id="openFileBtn" fitHeight="47.0" fitWidth="39.0" layoutX="6.0" layoutY="9.0" pickOnBounds="true" preserveRatio="true">
                                  <image>
                                     <Image url="@../assets/icons/icons8-music-folder-filled-50.png" />
                                  </image>
@@ -188,9 +188,9 @@
                                     <Cursor fx:constant="HAND" />
                                  </cursor>
                               </ImageView>
-                              <Label layoutX="-5.0" layoutY="33.0" prefHeight="17.0" prefWidth="61.0" text="Open File">
+                              <Label layoutX="2.0" layoutY="-2.0" prefHeight="17.0" prefWidth="54.0" text="Open File">
                                  <font>
-                                    <Font size="11.0" />
+                                    <Font size="10.0" />
                                  </font>
                               </Label>
                            </children>
@@ -198,7 +198,7 @@
                               <Cursor fx:constant="HAND" />
                            </cursor>
                         </Pane>
-                        <Pane layoutX="72.0" layoutY="4.0" prefHeight="50.0" prefWidth="50.0" styleClass="linear-grad-to-top-right">
+                        <Pane layoutX="65.0" layoutY="4.0" prefHeight="50.0" prefWidth="50.0" styleClass="linear-grad-to-top-right">
                            <children>
                               <ImageView fx:id="addSongBtn" fitHeight="39.0" fitWidth="45.0" layoutX="2.0" layoutY="2.0" pickOnBounds="true" preserveRatio="true">
                                  <image>
@@ -208,9 +208,9 @@
                                     <Cursor fx:constant="HAND" />
                                  </cursor>
                               </ImageView>
-                              <Label layoutX="-5.0" layoutY="32.0" prefHeight="17.0" prefWidth="61.0" text="Add Song">
+                              <Label layoutX="2.0" layoutY="32.0" prefHeight="17.0" prefWidth="54.0" text="Add Song">
                                  <font>
-                                    <Font name="Chalkboard SE Light" size="11.0" />
+                                    <Font name="Chalkboard SE Light" size="10.0" />
                                  </font>
                               </Label>
                            </children>
@@ -223,7 +223,7 @@
                               <Cursor fx:constant="HAND" />
                            </cursor>
                            <children>
-                              <ImageView fx:id="removeSongBtn" fitHeight="39.0" fitWidth="44.0" pickOnBounds="true" preserveRatio="true">
+                              <ImageView fx:id="removeSongBtn" fitHeight="39.0" fitWidth="44.0" layoutX="-5.0" layoutY="6.0" pickOnBounds="true" preserveRatio="true">
                                  <image>
                                     <Image url="@../assets/icons/icons8-close-window-50.png" />
                                  </image>
@@ -231,9 +231,9 @@
                                     <Cursor fx:constant="HAND" />
                                  </cursor>
                               </ImageView>
-                              <Label layoutX="-9.0" layoutY="33.0" prefHeight="18.0" prefWidth="64.0" text="Remove Song">
+                              <Label layoutX="-10.0" layoutY="-10.0" prefHeight="28.0" prefWidth="71.0" text="Remove Song">
                                  <font>
-                                    <Font name="Chalkboard SE Light" size="11.0" />
+                                    <Font name="Chalkboard SE Light" size="10.0" />
                                  </font>
                               </Label>
                            </children>
@@ -251,9 +251,9 @@
                                     <Cursor fx:constant="HAND" />
                                  </cursor>
                               </ImageView>
-                              <Label layoutX="-5.0" layoutY="33.0" prefHeight="15.0" prefWidth="61.0" text="Open Playlist">
+                              <Label layoutX="-11.0" layoutY="33.0" prefHeight="18.0" prefWidth="67.0" text="Open Playlist">
                                  <font>
-                                    <Font name="Chalkboard SE Light" size="11.0" />
+                                    <Font name="Chalkboard SE Light" size="10.0" />
                                  </font>
                               </Label>
                            </children>
@@ -263,7 +263,7 @@
                               <Cursor fx:constant="HAND" />
                            </cursor>
                            <children>
-                              <ImageView fx:id="newPlaylistBtn" fitHeight="46.0" fitWidth="49.0" pickOnBounds="true" preserveRatio="true">
+                              <ImageView fx:id="newPlaylistBtn" fitHeight="46.0" fitWidth="49.0" layoutX="2.0" layoutY="2.0" pickOnBounds="true" preserveRatio="true">
                                  <image>
                                     <Image url="@../assets/icons/icons8-favorite-folder-50.png" />
                                  </image>
@@ -271,9 +271,9 @@
                                     <Cursor fx:constant="HAND" />
                                  </cursor>
                               </ImageView>
-                              <Label layoutX="-5.0" layoutY="30.0" prefHeight="25.0" prefWidth="61.0" text="New Playlist">
+                              <Label layoutX="-5.0" layoutY="-8.0" prefHeight="25.0" prefWidth="61.0" text="New Playlist">
                                  <font>
-                                    <Font name="Chalkboard SE Light" size="11.0" />
+                                    <Font name="Chalkboard SE Light" size="10.0" />
                                  </font>
                               </Label>
                            </children>
@@ -283,7 +283,7 @@
                               <Cursor fx:constant="HAND" />
                            </cursor>
                            <children>
-                              <ImageView fx:id="savePlaylistBtn" fitHeight="39.0" fitWidth="42.0" layoutX="6.0" layoutY="6.0" pickOnBounds="true" preserveRatio="true">
+                              <ImageView fx:id="savePlaylistBtn" fitHeight="47.0" fitWidth="40.0" layoutY="1.0" pickOnBounds="true" preserveRatio="true">
                                  <image>
                                     <Image url="@../assets/icons/icons8-save-filled-50.png" />
                                  </image>
@@ -293,14 +293,14 @@
                               </ImageView>
                               <Label layoutX="-5.0" layoutY="34.0" prefHeight="11.0" prefWidth="61.0" text="Save Playlist">
                                  <font>
-                                    <Font name="Chalkboard SE Light" size="11.0" />
+                                    <Font name="Chalkboard SE Light" size="10.0" />
                                  </font>
                               </Label>
                            </children>
                         </Pane>
                         <Pane layoutX="355.0" layoutY="4.0" prefHeight="50.0" prefWidth="50.0" styleClass="linear-grad-to-top-right">
                            <children>
-                              <ImageView fx:id="deletePlaylistBtn" fitHeight="39.0" fitWidth="40.0" layoutX="-1.0" layoutY="2.0" pickOnBounds="true" preserveRatio="true">
+                              <ImageView fx:id="deletePlaylistBtn" fitHeight="39.0" fitWidth="40.0" layoutX="6.0" layoutY="6.0" pickOnBounds="true" preserveRatio="true">
                                  <image>
                                     <Image url="@../assets/icons/icons8-trash-50.png" />
                                  </image>
@@ -308,9 +308,9 @@
                                     <Cursor fx:constant="HAND" />
                                  </cursor>
                               </ImageView>
-                              <Label layoutX="-5.0" layoutY="35.0" prefHeight="18.0" prefWidth="60.0" text="Remove Playlist">
+                              <Label layoutX="-13.0" layoutY="-7.0" prefHeight="18.0" prefWidth="75.0" text="Remove Playlist">
                                  <font>
-                                    <Font name="Chalkboard SE Light" size="11.0" />
+                                    <Font name="Chalkboard SE Light" size="10.0" />
                                  </font>
                               </Label>
                            </children>
@@ -330,7 +330,7 @@
       </BorderPane>
       <AnchorPane layoutY="-1.0" prefHeight="49.0" prefWidth="480.0" style="-fx-background-color: #222222;" AnchorPane.bottomAnchor="693.0" AnchorPane.topAnchor="-2.0">
          <children>
-            <Label layoutX="55.0" layoutY="10.0" prefHeight="26.0" prefWidth="250.0" text="MP3 Player v2.0" textFill="#cccccc" AnchorPane.leftAnchor="55.0">
+            <Label layoutX="55.0" layoutY="10.0" prefHeight="26.0" prefWidth="250.0" text="MP3 Player" textFill="#cccccc" AnchorPane.leftAnchor="55.0">
                <font>
                   <Font name="HiraMaruPro-W4" size="18.0" />
                </font>

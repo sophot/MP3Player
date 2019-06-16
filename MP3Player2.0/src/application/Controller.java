@@ -1,5 +1,6 @@
 package application;
 
+import javafx.scene.control.Alert;
 import javafx.scene.control.Label;
 import javafx.scene.control.SelectionMode;
 import javafx.scene.control.TreeItem;
@@ -41,6 +42,7 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
+import javafx.stage.StageStyle;
 import javafx.util.Callback;
 import javafx.util.Duration;
 
@@ -118,6 +120,7 @@ public class Controller {
 	private ObservableList<Song> songs;
 
 	private boolean showingMore;
+	private boolean isRepeating;
 	private long startTime;
 	private long currTime;
 	private long playedTime = 0;
@@ -131,6 +134,7 @@ public class Controller {
 
 	// CONSTRUCTOR
 	public Controller() {
+		isRepeating = false;
 		showingMore = false;
 		stage = Main.getStage();
 		songs = FXCollections.observableArrayList();
@@ -276,7 +280,7 @@ public class Controller {
 							
 						}catch(Exception e) {}
 					}else {
-						System.out.println("Not MP3 File");
+						messageDialog("select MP3 file", "[File Mismath] Not MP3 File");
 					}
 				}
 			}
@@ -312,7 +316,7 @@ public class Controller {
 						System.out.println("No File Selected");
 					}
 				}else {
-					System.out.println("No Playlist is opened yet");
+					messageDialog("Help: select Open Playlist or Open File or Save Playlist", "No Playlist is opened yet");
 				}
 			}
 		}); 
@@ -366,7 +370,7 @@ public class Controller {
 							save();
 						}
 					}else {
-						System.out.println("Nothing to Save");
+						messageDialog("Help: select Open Playlist or Open File", "No playlist is opened to Save");
 					}
 				}
 			}
@@ -395,7 +399,7 @@ public class Controller {
 					}
 					
 				} else {
-					System.out.println("No playlist is opened");
+					messageDialog("Help: select Open Playlist or Open File", "No playlist is opened to delete");
 				}
 			}
 		});
@@ -450,10 +454,10 @@ public class Controller {
 			}
 			reader.close();
 		} catch (Exception e) {
-			e.printStackTrace();
+			messageDialog("Warning", e.getMessage());
 		}
 		
-		System.out.println("read " + songs.size() + " songs");
+		messageDialog("", ("read " + songs.size() + " songs"));
 		return songs;
 	}
 	//*** ENDS txtsTOsongs() //
@@ -469,7 +473,7 @@ public class Controller {
 
 			writer.close();
 		} catch (Exception e) {
-			e.printStackTrace();
+			System.out.println(e.getMessage());
 		}
 	}
 	//*** ENDS save() //
@@ -592,7 +596,12 @@ public class Controller {
 				@Override
 				public void handle(MouseEvent event) {
 					System.out.println("repeat clicked");
-					mp3player.setRepeat(true);
+					if(isRepeating == true) {
+						isRepeating = false;
+					}else {
+						isRepeating = true;
+					}
+					mp3player.setRepeat(isRepeating);
 				}
 			}); 
 			// ***END OF "repeatBtn" CLICKED*** //
@@ -652,8 +661,7 @@ public class Controller {
 								updateSongProgress(currTime - startTime + playedTime);
 							}
 							
-							if(currentDuration.getText().equals(totalDuration.getText())) {
-								System.out.println("what?");
+							if(currentDuration.getText().equals(totalDuration.getText()) && (isRepeating == false)) {
 								//if a song is finished
 								playNextSong();
 							}
@@ -811,4 +819,13 @@ public class Controller {
 		hide.play();
 	}
 	//*** ENDS hideTransition() //
+
+	public void messageDialog(String help, String message) {
+		Alert alert = new Alert(Alert.AlertType.INFORMATION);
+		alert.initStyle(StageStyle.UTILITY);
+		alert.setHeaderText(message);
+		alert.setContentText(help);
+
+		alert.showAndWait();
+	}
 }
