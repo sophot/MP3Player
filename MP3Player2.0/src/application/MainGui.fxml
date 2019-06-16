@@ -70,23 +70,11 @@
                                     <String fx:value="slider-value" />
                                     <String fx:value="jfx-slider-style" />
                                  </styleClass></JFXSlider>
-                              <Pane layoutX="358.0" layoutY="24.0" prefHeight="40.0" prefWidth="39.0">
+                              <Pane layoutX="359.0" layoutY="20.0" prefHeight="47.0" prefWidth="39.0">
                                  <children>
                                     <ImageView fx:id="repeatBtn" fitHeight="40.0" fitWidth="43.0" layoutX="-3.0" pickOnBounds="true" preserveRatio="true">
                                        <image>
                                           <Image url="@../assets/icons/icons8-repeat-one-filled-50.png" />
-                                       </image>
-                                       <cursor>
-                                          <Cursor fx:constant="HAND" />
-                                       </cursor>
-                                    </ImageView>
-                                 </children>
-                              </Pane>
-                              <Pane layoutX="412.0" layoutY="24.0" prefHeight="40.0" prefWidth="39.0">
-                                 <children>
-                                    <ImageView fx:id="shuffleBtn" fitHeight="40.0" fitWidth="43.0" layoutX="-3.0" pickOnBounds="true" preserveRatio="true">
-                                       <image>
-                                          <Image url="@../assets/icons/icons8-shuffle-filled-50.png" />
                                        </image>
                                        <cursor>
                                           <Cursor fx:constant="HAND" />
